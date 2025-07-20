@@ -1,0 +1,39 @@
+useDotenv: true
+
+service: loan-csv-ingestor
+
+provider:
+  name: aws
+  runtime: python3.12
+  region: us-east-1
+
+  environment:
+    DB_HOST: ${env:DB_HOST}
+    DB_NAME: ${env:DB_NAME}
+    DB_USER: ${env:DB_USER}
+    DB_PASSWORD: ${env:DB_PASSWORD}
+    DB_PORT: ${env:DB_PORT}
+    N8N_WEBHOOK_URL: ${env:N8N_WEBHOOK_URL}
+
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - s3:GetObject
+      Resource: arn:aws:s3:::${env:AWS_STORAGE_BUCKET_NAME}/*
+
+functions:
+  ingestCSV:
+    handler: handler.handler
+    events:
+      - s3:
+          bucket: ${env:AWS_STORAGE_BUCKET_NAME}
+          event: s3:ObjectCreated:*
+          existing: true
+
+plugins:
+  - serverless-python-requirements
+
+custom:
+  pythonRequirements:
+    dockerizePip: true
+    slim: true

@@ -1,0 +1,50 @@
+# Node modules
+node_modules/
+
+# Serverless deployment artifacts
+.serverless/
+.webpack/
+package-lock.json
+yarn.lock
+
+# AWS credentials (never commit these!)
+.env
+.env.local
+.env.production
+.env.*
+
+# Python virtualenv (if using Python somewhere)
+venv/
+
+# n8n local data
+n8n_data/
+n8n_backup/
+n8n.log
+
+# VS Code settings
+.vscode/
+
+# Mac/Linux system files
+.DS_Store
+*.swp
+*.swo
+
+# Logs
+*.log
+logs/
+crash.journal
+
+# Docker-related
+docker-compose.override.yml
+*.pid
+
+# Coverage reports / test results
+coverage/
+.nyc_output/
+__pycache__/
+
+# Temporary files
+tmp/
+temp/
+*.bak
+*.old

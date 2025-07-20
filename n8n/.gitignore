@@ -1,0 +1,27 @@
+# Ignore environment variables
+.env
+
+# Ignore n8n working data (contains credentials, encryption keys, session data, etc.)
+n8n_data/
+n8n_backup/config
+
+# Ignore Docker artifacts
+*.log
+docker-compose.override.yml
+
+# Node dependencies (if any local dev code)
+node_modules/
+
+# OS & editor junk
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# Python cache if any scripts
+__pycache__/
+*.pyc
+
+# AWS build/deploy artifacts
+.serverless/
+*.zip

@@ -1,0 +1,11 @@
+# The Access Key ID is a 20-character string starting with 'AKIA'
+AWS_ACCESS_KEY_ID=
+
+# The Secret Access Key is a 40-character string with mixed case and symbols
+AWS_SECRET_ACCESS_KEY=
+
+# Your S3 bucket name must be globally unique
+AWS_STORAGE_BUCKET_NAME=
+
+# The AWS region where your bucket is located
+AWS_REGION=

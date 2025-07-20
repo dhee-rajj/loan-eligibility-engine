@@ -1,0 +1,11 @@
+DB_HOST=
+DB_NAME=postgres
+DB_USER=
+DB_PASSWORD=
+DB_PORT=5432
+
+AWS_STORAGE_BUCKET_NAME=
+
+
+N8N_WEBHOOK_URL=<I used ngrok>/webhook-test/s3-upload
+
