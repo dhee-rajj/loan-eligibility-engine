@@ -51,6 +51,14 @@ A full-stack system that automates user-to-loan product matching using AWS and o
 
 ---
 
+## 🎥 Demo Video
+
+Watch a walkthrough of the Loan Eligibility Engine in action:
+
+[![Loan Eligibility Engine Demo](https://img.youtube.com/vi/1v91ZcVEHaIwlhbNg4eDgbjInVTPj_xY_/0.jpg)](https://drive.google.com/file/d/1v91ZcVEHaIwlhbNg4eDgbjInVTPj_xY_/view?usp=drive_link)
+
+---
+
 ## 📊 Example Query: Get Users and Their Matched Loans (Last 24h)
 
 ```sql

@@ -5,10 +5,6 @@ from .forms import UploadCSVForm
 import uuid
 
 def upload_csv(request):
-    print("AWS_ACCESS_KEY_ID =", settings.AWS_ACCESS_KEY_ID)
-    print("AWS_SECRET_ACCESS_KEY =", settings.AWS_SECRET_ACCESS_KEY)
-    print("AWS_STORAGE_BUCKET_NAME =", settings.AWS_STORAGE_BUCKET_NAME)
-    print("AWS_REGION =", settings.AWS_REGION)
     if request.method == 'POST':
         form = UploadCSVForm(request.POST, request.FILES)
         if form.is_valid():
