@@ -20,15 +20,21 @@ A full-stack system that automates user-to-loan product matching using AWS and o
 
 ## 🧱 Architecture Overview
 
-```mermaid
-graph TD
-    A[Django Web UI] -->|Upload CSV| B[S3 Bucket]
-    B -->|Trigger| C[AWS Lambda]
-    C -->|Webhook Call| D[n8n Workflow A: Insert Users]
-    D -->|Webhook Call| E[n8n Workflow B: Insert Loan Products]
-    E -->|Webhook Call (Daily 8pm)| F[n8n Workflow C: Match Loans]
-    F -->|Webhook Call| G[n8n Workflow D: Email User]
-    G -->|Email| H[AWS SES]
+```text
+[Django Web UI]
+    ↓ (Upload CSV)
+[S3 Bucket]
+    ↓ (Trigger)
+[AWS Lambda]
+    ↓ (Webhook Call)
+[n8n Workflow A: Insert Users]
+    ↓ (Webhook Call)
+[n8n Workflow B: Insert loan_products] 
+    ↓ (Webhook Call - Runs daily at 8pm)
+[n8n Workflow C: Match Loans]
+    ↓ (Webhook Call)
+[n8n Workflow D: Email User]
+      ↳ [AWS SES]
 ```
 
 ### 📥 Workflow A: CSV Upload & Ingestion
@@ -41,7 +47,7 @@ graph TD
 ![Workflow C](images/loan_match.png)
 
 ### 📥 Workflow D: User Email Notification
-![Workflow D](images/user_notification.png)
+![Workflow D](images/user_notifcation.png)
 
 ---
 
