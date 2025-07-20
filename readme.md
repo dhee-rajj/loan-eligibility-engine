@@ -75,6 +75,40 @@ GROUP BY
 
 ---
 
+## 🧮 Example: Matching Users to Top 3 Loan Products
+
+This SQL statement inserts the top 3 eligible loan products for each user into the `matches` table. It uses a Common Table Expression (CTE) to rank loan products for each user based on the minimum income requirement, ensuring that users are matched with the most accessible loans first.
+
+```sql
+INSERT INTO matches (user_id, product_id)
+WITH matched_pairs AS (
+  SELECT
+    u.user_id,
+    l.id AS product_id,
+    ROW_NUMBER() OVER (
+      PARTITION BY u.user_id
+      ORDER BY l.min_income_monthly ASC
+    ) AS rank
+  FROM users u
+  JOIN loan_products l
+    ON u.monthly_income >= l.min_income_monthly
+    AND u.credit_score >= l.min_credit_score
+    AND u.age BETWEEN 21 AND 60
+    AND u.employment_status IN ('Salaried', 'Self-Employed')
+)
+SELECT user_id, product_id
+FROM matched_pairs
+WHERE rank <= 3;
+```
+
+**Explanation:**
+- The `matched_pairs` CTE finds all loan products each user is eligible for, based on income, credit score, age, and employment status.
+- `ROW_NUMBER() OVER (PARTITION BY u.user_id ORDER BY l.min_income_monthly ASC)` ranks the loans for each user, prioritizing those with the lowest income requirement (i.e., most accessible).
+- The final `SELECT` picks only the top 3 ranked products per user.
+- The result is inserted into the `matches` table, so each user is matched with up to three best-fit loan products.
+
+---
+
 ## 🚀 Quickstart: n8n Docker Compose
 
 ```yaml
